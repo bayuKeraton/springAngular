@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tech.getarrays.springangular.model.Employee;
 import tech.getarrays.springangular.repo.Employeerepo;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,4 +22,20 @@ public class EmployeeService {
         return employeeRepo.save(employee);
     }
 
+    public List<Employee> findAllEmployees(){
+        return employeeRepo.findAll();
+    }
+
+    public Employee UpdateEmployee(Employee employee){
+        return employeeRepo.save(employee);
+    }
+
+    public Employee findEmployeeById(Long id){
+        return employeeRepo.findEmployeeById(id)
+                .orElseThrow(()-> new UserNotFoundException ("User by id" + id + " was not found"));
+    }
+
+    public void deleteEmployee(Long id){
+        employeeRepo.deleteEmployeeById(id);
+    }
 }
